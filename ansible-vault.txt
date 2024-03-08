@@ -1,0 +1,14 @@
+# ansible-vault encrpyt vars.yml at terminal type
+#new passwd
+#confirm passwd
+#cat vars.yml key will get
+# at command prompt pass this ansible-playbook varaibles.yml --ask-vault-pass
+#enter the new passsword 
+# while running playbook we give ansible-playbook varaibles.yml --vault-passsword-fie=~/vault.pwd
+#vi ~/vault.pwd 
+# change the passsword
+# enter the passwd 
+# config file if require change the vault pwd
+# encrypt the specific values in the vault is ansible-vault encrypt_string db_passwd 'Srinika@'
+#   ansible-vault encrypt_string  'Srinika@'--name db_passwd
+#

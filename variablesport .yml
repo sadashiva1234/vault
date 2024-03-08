@@ -1,0 +1,42 @@
+- name: variables  declare # name of the yaml 
+  hosts: webservers        # host of the yaml
+  become: True
+  become_user: ubuntu  # name of the host
+  serial:
+     - 10%  # update the 10 servers
+  vars:
+  - apache_port: 80
+  tasks:                               # tasks to perform automation for project
+    - name: install the apache tomcat
+      yum:
+        name: httpd
+        state: present
+      tags:
+        - install      #  specify the task  what we we have to do this tags
+    - name: start the the apache server
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+      tags:
+        - start
+    - name: copy the code from souce to destination to and  deploy it
+      copy:
+        src: index.html
+        dest: /var/www/html/
+      tags:
+       - deploy  
+      notify:
+        - restart
+    - name: change the port of host
+      lineinfile: /etc/httpd/conf/httpd.conf
+      regexp: '^listen'
+      interpreter: '^#listen'
+      line: 'listen{{apache_port}}'
+      notify:
+        - restart
+  handlers:
+    - name: restart
+      service:
+        name: httpd
+        state: restarted  # at commandline pass variables.yml -e apache_port=8080

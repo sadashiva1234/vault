@@ -1,0 +1,12 @@
+---
+apache_port: 80
+db_schema: callingapp
+db_admin: admin
+db_password: Srinika@
+api_token: asasadasfdfdasfsajfsdssdfafdfshjafds
+# ansible-vault encrpyt vars.yml at terminal type
+#new passwd
+#confirm passwd
+#cat vars.yml key will get
+# at command prompt pass this ansible-playbook  <> --ask-vault-pass
+#enter the passsword get access
